@@ -1,27 +1,30 @@
 {
-  "name": "simplecrudts",
-  "version": "1.0.0",
-  "main": "app.js",
-  "author": "Anderson",
-  "license": "MIT",
-  "scripts": {
-    "ts": "tsc -w",
-    "server": "nodemon ./build/index.js",
-    "start": "tsc && node ./build/index.js"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "compression": "^1.7.1",
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "helmet": "^3.10.0",
-    "mongoose": "^5.0.3",
-    "morgan": "^1.9.0",
-    "nodemon": "^1.14.12"
-  },
-  "devDependencies": {
-    "@types/mongoose": "^5.0.1",
-    "@types/node": "^9.4.2",
-    "typescript": "^2.7.1"
-  }
+	"name": "simplecrudts",
+	"version": "1.0.0",
+	"main": "app.js",
+	"author": "Anderson",
+	"license": "MIT",
+	"scripts": {
+		"ts": "tsc -w",
+		"server": "nodemon ./build/index.js",
+		"start": "tsc && node ./build/index.js"
+	},
+	"repository": {
+		"url": "https://github.com/Ander02/SimpleTScrud.git"
+	},
+	"dependencies": {
+		"body-parser": "^1.18.2",
+		"compression": "^1.7.1",
+		"cors": "^2.8.4",
+		"express": "^4.16.2",
+		"helmet": "^3.10.0",
+		"mongoose": "^5.0.3",
+		"morgan": "^1.9.0",
+		"nodemon": "^1.14.12"
+	},
+	"devDependencies": {
+		"@types/mongoose": "^5.0.1",
+		"@types/node": "^9.4.2",
+		"typescript": "^2.7.1"
+	}
 }
