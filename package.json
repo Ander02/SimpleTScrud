@@ -1,8 +1,14 @@
 {
+  "name": "ts",
   "version": "1.0.0",
   "main": "app.js",
   "author": "Anderson",
   "license": "MIT",
+  "scripts": {
+    "ts": "tsc -w",
+    "server": "nodemon ./build/index.js",
+    "start": "tsc && node ./build/index.js"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
@@ -10,7 +16,8 @@
     "express": "^4.16.2",
     "helmet": "^3.10.0",
     "mongoose": "^5.0.3",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "nodemon": "^1.14.12"
   },
   "devDependencies": {
     "@types/mongoose": "^5.0.1",

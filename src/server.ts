@@ -7,19 +7,21 @@ import * as helmet from "helmet"
 import * as cors from "cors"
 
 //import routers
+// import PostRouter from "./routers/PostRouter"
+
 
 //Server class
-class Server{
+class Server {
 
-	public app : express.Application;
+	public app: express.Application;
 
-	constructor(){
+	constructor() {
 		this.app = express();
 		this.config();
 		this.routes();
 	}
 
-	public config(){
+	public config() {
 
 		//Configurar a conexão
 		const MONGO_URI = "mongodb://localhost:27017/ts"
@@ -34,15 +36,24 @@ class Server{
 		this.app.use(compression());
 		this.app.use(helmet());
 		this.app.use(cors());
+
+		// cors
+		this.app.use((req, res, next) => {
+			res.header('Access-Control-Allow-Origin', 'http://0.0.0.0:8080');
+			res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+			res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
+			res.header('Access-Control-Allow-Credentials', 'true');
+			next();
+		});
 	}
 
-	public routes(){
-		let router: express.Router;
-		router = express.router();
+	public routes() {
+		const router: express.Router = express.Router();
 
 		this.app.use("/", router);
-
+		//this.app.use("/api/v1/posts", PostRouter.router);
 	}
 }
 
+//export
 export default new Server().app
