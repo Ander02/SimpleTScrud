@@ -13,11 +13,9 @@ export class MessageRouter {
 	public findAll(req: Request, res: Response): void {
 
 		Message.find().then((data) => {
-
 			res.status(200).json(data);
 
 		}).catch((error) => {
-
 			res.json({ error });
 
 		});
@@ -26,9 +24,7 @@ export class MessageRouter {
 	public findById(req: Request, res: Response): void {
 		const id: string = req.params.id;
 
-		Message.findOne({
-			_id: id
-		}).then((data) => {
+		Message.findById(id).then((data) => {
 
 			if (data == null || typeof (data) == "undefined") res.status(404).json();
 
@@ -45,6 +41,7 @@ export class MessageRouter {
 		const subject: string = req.body.subject;
 		const content: string = req.body.content;
 
+		//validations
 		if (subject == null || subject == "" || typeof (subject) == "undefined") {
 			res.status(422).json({ error: 'subject is required' });
 		}
@@ -66,9 +63,7 @@ export class MessageRouter {
 	public update(req: Request, res: Response): void {
 		const id: string = req.params.id;
 
-		Message.findOneAndUpdate({
-			_id: id
-		}, req.body).then((data) => {
+		Message.findByIdAndUpdate(id, req.body).then((data) => {
 			res.status(200).json(data);
 
 		}).catch((error) => {
@@ -80,9 +75,7 @@ export class MessageRouter {
 	public delete(req: Request, res: Response): void {
 		const id: string = req.params.id;
 
-		Message.findOneAndRemove({
-			_id: id
-		}).then(() => {
+		Message.findByIdAndRemove(id).then(() => {
 			res.status(204).end();
 
 		}).catch((error) => {
@@ -98,7 +91,6 @@ export class MessageRouter {
 		this.router.put('/:id', this.update);
 		this.router.delete('/:id', this.delete);
 	}
-
 }
 
 const messageRouter = new MessageRouter();
