@@ -46,7 +46,7 @@ class Server {
 			next();
 		});
 	}
-
+ 
 	public routes() {
 		const router: express.Router = express.Router();
 
