@@ -1,21 +1,20 @@
 import { Request, Response } from 'express';
 import Message from '../models/Message';
 import MessageViewer from '../views/Message/MessageViewer';
+import IMessageViewer from '../views/Message/IMessageViewer';
+import { debug } from 'util';
+
 
 export class MessageController {
-
-	constructor() {
-
-	}
 
 	public findAll(req: Request, res: Response): void {
 
 		Message.find().then((data) => {
 
-			let responseData = [];
+			let responseData = new Array();
+			debugger
 
-			data.forEach((item) => {
-
+			data.forEach(<IMessageViewer>(item) => {
 				responseData.push(new MessageViewer(item));
 			});
 			res.status(200).json(responseData);
@@ -28,7 +27,7 @@ export class MessageController {
 	public findById(req: Request, res: Response): void {
 		const id: string = req.params.id;
 
-		Message.findById(id).then((data) => {
+		Message.findById(id).then(<IMessageViewer>(data) => {
 
 			if (data == null || typeof (data) == "undefined") res.status(404).json();
 
@@ -55,7 +54,7 @@ export class MessageController {
 
 		const message = new Message({ subject, content });
 
-		message.save().then((data) => {
+		message.save().then(<IMessageViewer>(data) => {
 			res.status(201).json(new MessageViewer(data));
 
 		}).catch((error) => {
@@ -67,12 +66,11 @@ export class MessageController {
 	public update(req: Request, res: Response): void {
 		const id: string = req.params.id;
 
-		Message.findByIdAndUpdate(id, req.body).then((data) => {
+		Message.findByIdAndUpdate(id, req.body).then(<IMessageViewer>(data) => {
 			res.status(200).json(new MessageViewer(data));
 
 		}).catch((error) => {
 			res.status(500).json({ error });
-
 		});
 	}
 

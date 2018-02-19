@@ -1,16 +1,17 @@
 import { ObjectId } from "bson";
+import IMessageViewer from "./IMessageViewer";
 
-export default class MessageViewer {
-
-	constructor(message) {
-		this.id = message.id;
-		this.subject = message.subject;
-		this.content = message.content;
-		this.date = message.date;
-	}
+export default class MessageViewer implements IMessageViewer {
 
 	public id: ObjectId;
 	public subject: String;
 	public content: String;
-	public date: Date
+	public date?: Date
+
+	constructor({ id, subject, content, date }) {
+		this.id = id;
+		this.subject = subject;
+		this.content = content;
+		this.date = date;
+	}
 }
